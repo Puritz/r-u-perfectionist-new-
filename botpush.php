@@ -281,9 +281,12 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				$textReplyMessage = "คุณมีโอกาสเสี่ยงที่จะเป็นภาวะ Perfectionist นี่เป็นเพียงแบบทดสอบเริ่มต้น ควรไปพบจิตแพทย์เพื่อความแน่ใจ";
 				$textMessage = new TextMessageBuilder($textReplyMessage); 
 				
+				$textReplyMessage2 = "คุณสามารถสอนคำตอบเพิ่มเติมเกี่ยวกับคำว่า 'ใช่' หรือ 'ไม่' โดยการพิมพ์ : สอนคำตอบ[คำที่ต้องการสอน|ใช่ หรือ ไม่]";
+				$textMessage2 = new TextMessageBuilder($textReplyMessage2);
+				
 				$multiMessage = new MultiMessageBuilder;
 				$multiMessage->add($textMessage);   
-				
+				$multiMessage->add($textMessage2);   
 				$replyData = $multiMessage; 
 				$response = $bot->pushMessage($id,$replyData);	
 				
@@ -300,9 +303,12 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 					$textReplyMessage = "ยินดีด้วย คุณยังไม่มีภาวะเสี่ยงที่จะเป็นภาวะ Perfectionist นี่เป็นเพียงแบบทดสอบเริ่มต้น ควรไปพบจิตแพทย์เพื่อความแน่ใจ";
 					$textMessage = new TextMessageBuilder($textReplyMessage); 
 					
+					$textReplyMessage2 = "คุณสามารถสอนคำตอบเพิ่มเติมเกี่ยวกับคำว่า 'ใช่' หรือ 'ไม่' โดยการพิมพ์ : สอนคำตอบ[คำที่ต้องการสอน|ใช่ หรือ ไม่]";
+					$textMessage2 = new TextMessageBuilder($textReplyMessage2); 
+					
 					$multiMessage = new MultiMessageBuilder;
 					$multiMessage->add($textMessage);   
-					
+					$multiMessage->add($textMessage2); 
 					$replyData = $multiMessage; 
 					$response = $bot->pushMessage($id,$replyData);
 					
