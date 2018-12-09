@@ -66,7 +66,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
     $json = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/bot?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
     $data = json_decode($json);
     $isData = sizeof($data);
-    //collection คำตอบใช่ หรือ ไม่
+    //collection คำตอบใช่
     $url2 = 'https://api.mlab.com/api/1/databases/rup_db/collections/yes?apiKey='.$api_key.'';
     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/yes?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
     $data2 = json_decode($json2);
@@ -76,11 +76,6 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/no?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
     $data3 = json_decode($json3);
     $isData3 = sizeof($data3);
-
-    $url4 = 'https://api.mlab.com/api/1/databases/rup_db/collections/question?apiKey='.$api_key.'';
-    $json4 = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/question?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
-    $data4 = json_decode($json4);
-    $isData4 = sizeof($data4);
 
         if (strpos($message, 'สอนบอท') !== false) {
             $s_message = "A";
@@ -172,14 +167,11 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			
 				if($isData2 >0){	
 					foreach($data2 as $rec2){
-						$count++;
 						$textReplyMessage = $rec2->system;
 						$textMessage = new TextMessageBuilder($textReplyMessage);   
-						$textReplyMessage2 = $count;
-						$textMessage2 = new TextMessageBuilder($textReplyMessage2); 
+						
 						$multiMessage = new MultiMessageBuilder;
 						$multiMessage->add($textMessage);  
-						$multiMessage->add($textMessage2);  
 						$replyData = $multiMessage; 
 					}
 				}
@@ -242,7 +234,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				$tmp[1] = $tmp[1] . $message . ",";	
 				
 				$count = $tmp[2];
-				if(strpos($message, 'yes') !== false ){
+				if($isData2 >0){
 					$count = $tmp[2] + 1;
 				}
 				
