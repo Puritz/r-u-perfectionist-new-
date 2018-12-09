@@ -191,6 +191,15 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				
 				$count = $tmp[2];
 				if($isData2 >0){
+					foreach($data as $rec){
+						$textReplyMessage = $rec->system;
+						$textMessage = new TextMessageBuilder($textReplyMessage);   
+
+						$multiMessage = new MultiMessageBuilder;
+						$multiMessage->add($textMessage);      
+						$replyData = $multiMessage; 
+                        
+                      			}
 					$count = $tmp[2] + 1;
 				}
 				
