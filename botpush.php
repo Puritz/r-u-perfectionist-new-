@@ -327,7 +327,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				}	
 			}
 			
-			
+			 break;
 			
 	
 				
@@ -346,11 +346,11 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			
 			$replyData = $multiMessage; 
 			$response = $bot->pushMessage($id,$replyData);
-*/
+
 			
 				
 			
-			/*for($count = 0 ; $count <15 ; $count++){
+			for($count = 0 ; $count <15 ; $count++){
 	        
 		
     		if($count == 0){
@@ -544,19 +544,25 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
                 $replyData = $multiMessage; 
 		$response = $bot->pushMessage($id,$replyData);
 			}*/
-			
-		   break;
         default:
                     
-            $actionBuilder = array(
-                                new MessageTemplateActionBuilder(
-                                    'ใช่',// ข้อความแสดงในปุ่ม
-                                    'ใช่' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                ),
-                                new MessageTemplateActionBuilder(
-                                    'ไม่',// ข้อความแสดงในปุ่ม
-                                    'ไม่' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                ),                   
+            $actionBuilder = array(     
+		    		new PostbackTemplateActionBuilder(
+				    'ใช่', // ข้อความแสดงในปุ่ม
+				    http_build_query(array(
+					'user' => $message,
+					'system'=> 'ใช่'
+				    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
+				    'ใช่'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+				),      
+				new PostbackTemplateActionBuilder(
+				    'ไม่', // ข้อความแสดงในปุ่ม
+				    http_build_query(array(
+					'user' => $message,
+					'system'=> 'ไม่'
+				    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
+				    'ไม่'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+				),      
                             );
                         
                     $imageUrl = 'https://www.picz.in.th/images/2018/10/23/kFKkru.jpg';    
