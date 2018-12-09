@@ -83,11 +83,8 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
         else if($isData > 0){
             $s_message = "B";
         }
-	else if($isData2 > 0){
-            $s_message = "C";
-        }
    	 else if(strpos($message, 'เริ่มทดสอบ') !== false){
-	    $s_message = "D";
+	    $s_message = "C";
 	} else {
 		 
 		$fileName = $id . ".txt";
@@ -161,50 +158,9 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 					$replyData = $multiMessage; 
 				}
 			$response = $bot->replyMessage($replyToken,$replyData);
-						  
-		    break;      
-			case "C":
-			
-				if($isData2 >0){	
-					foreach($data2 as $rec2){
-						$textReplyMessage = $rec2->system;
-						$textMessage = new TextMessageBuilder($textReplyMessage);   
-						
-						$multiMessage = new MultiMessageBuilder;
-						$multiMessage->add($textMessage);  
-						$replyData = $multiMessage; 
-					}
-				}
-				
-				else{
-					$actionBuilder = array(
-					new MessageTemplateActionBuilder(
-						'ใช่',// ข้อความแสดงในปุ่ม
-						'ใช่' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-						),
-						new MessageTemplateActionBuilder(
-						'ไม่',// ข้อความแสดงในปุ่ม
-						'ไม่' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-						),                   
-						);
-					$imageUrl = 'https://www.picz.in.th/images/2018/10/23/kFKkru.jpg';    
-					$buttonMessage = new TemplateMessageBuilder('Button Template',
-							new ButtonTemplateBuilder(
-							'คำที่คุณพิมพ์หมายถึง ใช่ หรือ ไม่', // กำหนดหัวเรื่อง
-							'กรุณาเลือก 1 ข้อ', // กำหนดรายละเอียด
-							$imageUrl, // กำหนด url รุปภาพ
-							$actionBuilder  // กำหนด action object
-						)
-						);  
-								
-					$multiMessage = new MultiMessageBuilder;
-					$multiMessage->add($buttonMessage);
-					$replyData = $multiMessage; 
-				}
-			$response = $bot->replyMessage($replyToken,$replyData);
-			
+						 
 		    break;
-			case "D":
+			case "C":
 			
 			$fileName = $id . ".txt";
 		
