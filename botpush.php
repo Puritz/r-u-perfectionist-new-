@@ -7,9 +7,9 @@ require_once 'bot_settings.php';
 use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-//use LINE\LINEBot\Event;
-//use LINE\LINEBot\Event\BaseEvent;
-//use LINE\LINEBot\Event\MessageEvent;
+use LINE\LINEBot\Event;
+use LINE\LINEBot\Event\BaseEvent;
+use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
@@ -90,7 +90,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 		$fileName = $id . ".txt";
 
 		if(file_exists($fileName)) {
-			$s_message = "D";
+			$s_message = "C";
 		} 
 		 
 	}
@@ -190,7 +190,8 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				$tmp[1] = $tmp[1] . $message . ",";	
 				
 				$count = $tmp[2];
-				if($isData2 >0){
+				
+				if($isData2 > 0){
 					$count = $tmp[2] + 1;
 				}
 				
