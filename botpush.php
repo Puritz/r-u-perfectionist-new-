@@ -66,12 +66,12 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
     $json = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/bot?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
     $data = json_decode($json);
     $isData = sizeof($data);
-    //collection คำตอบใช่
+    //collection คำตอบ ใช่
     $url2 = 'https://api.mlab.com/api/1/databases/rup_db/collections/yes?apiKey='.$api_key.'';
     $json2 = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/yes?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
     $data2 = json_decode($json2);
     $isData2 = sizeof($data2);
-
+    //collection คำตอบ ไม่
     $url3 = 'https://api.mlab.com/api/1/databases/rup_db/collections/no?apiKey='.$api_key.'';
     $json3 = file_get_contents('https://api.mlab.com/api/1/databases/rup_db/collections/no?apiKey='.$api_key.'&q={"user":"'.$message.'"}');
     $data3 = json_decode($json3);
@@ -193,6 +193,9 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				
 				if($isData2 > 0){
 					$count = $tmp[2] + 1;
+				}
+				else if($isData3 > 0){
+					$count = $tmp[2];
 				}
 				
 				$myfile = fopen($fileName, "w");
