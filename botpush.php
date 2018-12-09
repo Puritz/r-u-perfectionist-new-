@@ -85,7 +85,11 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
         }
    	 else if(strpos($message, 'เริ่มทดสอบ') !== false){
 	    $s_message = "C";
-	} else {
+	} 
+	else if(strpos($message, 'สอนคำตอบ') !== false){
+	    $s_message = "D";
+	} 
+	else {
 		 
 		$fileName = $id . ".txt";
 
@@ -550,6 +554,48 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
                 $replyData = $multiMessage; 
 		$response = $bot->pushMessage($id,$replyData);
 			}*/
+			
+		case "D":
+			 if (strpos($message, 'สอนคำตอบ') !== false) {
+			    $x_tra = str_replace("สอนคำตอบ","", $message);
+			    $pieces = explode("|", $x_tra);
+			    $_user=str_replace("[","",$pieces[0]);
+			    $_system=str_replace("]","",$pieces[1]);
+			     //Post New Data
+			   $newData = json_encode(
+				      array(
+					'user' => $_user,
+					'system'=> $_system
+				      )
+				    );
+				$opts = array(
+				   'http' => array(
+				   'method' => "POST",
+				   'header' => "Content-type: application/json",
+				   'content' => $newData
+			       )
+			    );
+			    $context = stream_context_create($opts);
+			    $returnValue = file_get_contents($url2,false,$context);
+
+			 }
+			
+                    $textReplyMessage = "ขอบคุณที่สอนจ้า";
+                    $textMessage = new TextMessageBuilder($textReplyMessage);
+                    $stickerID = 41;
+                    $packageID = 2;
+                    $stickerMessage = new StickerMessageBuilder($packageID,$stickerID);
+                    
+                    $multiMessage = new MultiMessageBuilder;
+                    $multiMessage->add($textMessage);
+                    $multiMessage->add($stickerMessage);
+                    $replyData = $multiMessage; 
+		$response = $bot->replyMessage($replyToken,$replyData);
+            break;
+			
+			
+			
+			
         default:
                     $answer = rand(1, 6);
 			
