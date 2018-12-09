@@ -545,42 +545,37 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 		$response = $bot->pushMessage($id,$replyData);
 			}*/
         default:
-                    
-            $actionBuilder = array(     
-		    		new PostbackTemplateActionBuilder(
-				    'ใช่', // ข้อความแสดงในปุ่ม
-				    http_build_query(array(
-					'user' => $message,
-					'system'=> 'ใช่'
-				    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-				    'ใช่'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-				),      
-				new PostbackTemplateActionBuilder(
-				    'ไม่', // ข้อความแสดงในปุ่ม
-				    http_build_query(array(
-					'user' => $message,
-					'system'=> 'ไม่'
-				    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-				    'ไม่'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-				),      
-                            );
-                        
-                    $imageUrl = 'https://www.picz.in.th/images/2018/10/23/kFKkru.jpg';    
-                    $buttonMessage = new TemplateMessageBuilder('Button Template',
-                        new ButtonTemplateBuilder(
-                                'คำที่คุณพิมพ์หมายถึง ใช่ หรือ ไม่', // กำหนดหัวเรื่อง
-                                'กรุณาเลือก 1 ข้อ', // กำหนดรายละเอียด
-                                $imageUrl, // กำหนด url รุปภาพ
-                                $actionBuilder  // กำหนด action object
-                        )
-                    );  
-                    
-                    $textReplyMessage = "หากสิ่งที่คุณหมายถึงไม่ใช่ทั้ง 'ใช่' และ 'ไม่' คุณสามารถสอนให้ฉลาดได้เพียงพิมพ์: สอนบอท[คำถาม|คำตอบ]";
+                    $answer = rand(1, 6);
+			
+		    if($answer == 1){
+			    $default_answer = "งงจังเลย";
+		    }
+		    if($answer == 2){
+			    $default_answer = "ไม่เข้าใจเลยอ่ะ";
+		    }
+		    if($answer == 3){
+			    $default_answer = "พูดอีกทีได้ไหม";
+		    }
+		    if($answer == 4){
+			    $default_answer = "ว่ายังไงนะ";
+		    }
+		    if($answer == 5){
+			    $default_answer = "พูดใหม่ได้ไหม";
+		    }
+		    if($answer == 6){
+			    $default_answer = "ฟังไม่ทันเลย";
+		    }
+		
+		    $textReplyMessage = $default_answer;
                     $textMessage = new TextMessageBuilder($textReplyMessage); 
+			
+            
+                    $textReplyMessage2 = "คุณสามารถสอนให้ฉลาดได้เพียงพิมพ์: สอนบอท[คำถาม|คำตอบ]";
+                    $textMessage2 = new TextMessageBuilder($textReplyMessage2); 
                         
                     $multiMessage = new MultiMessageBuilder;
-                    $multiMessage->add($buttonMessage);
                     $multiMessage->add($textMessage);   
+		    $multiMessage->add($textMessage2);   
                     $replyData = $multiMessage; 
 		   $response = $bot->replyMessage($replyToken,$replyData);
             break;                                         
