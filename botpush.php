@@ -562,6 +562,8 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    $_user=str_replace("[","",$pieces[0]);
 			    $_system=str_replace("]","",$pieces[1]);
 			     //Post New Data
+			   
+		           if($pieces[1] == "ใช่"){
 			    $newData = json_encode(
 				      array(
 					'user' => $_user,
@@ -577,7 +579,24 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    );
 			    $context = stream_context_create($opts);
 			    $returnValue = file_get_contents($url2,false,$context);
-
+			   }
+		            else if($pieces[1] == "ไม่"){
+				    newData = json_encode(
+				      array(
+					'user' => $_user,
+					'system'=> $_system
+				      )
+				    );
+				$opts = array(
+				   'http' => array(
+				   'method' => "POST",
+				   'header' => "Content-type: application/json",
+				   'content' => $newData
+			       )
+			    );
+			    $context = stream_context_create($opts);
+			    $returnValue = file_get_contents($url3,false,$context);
+			    }
 			 }
 			
                     $textReplyMessage = "ขอบคุณที่สอนจ้า";
