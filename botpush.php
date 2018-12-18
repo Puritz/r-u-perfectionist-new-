@@ -581,7 +581,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    $returnValue = file_get_contents($url2,false,$context);
 			   }
 		            else if($pieces[1] == "ไม่"){
-				    newData = json_encode(
+				   $newData = json_encode(
 				      array(
 					'user' => $_user,
 					'system'=> $_system
@@ -595,7 +595,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			       )
 			    );
 			    $context = stream_context_create($opts);
-			    $returnValue = file_get_contents($url3,false,$context);
+			    $returnValue = file_get_contents($url2,false,$context);
 			    }
 			 }
 			
