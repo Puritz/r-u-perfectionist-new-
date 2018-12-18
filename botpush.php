@@ -199,7 +199,6 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				if($isData2 > 0 || strpos($message, 'ใช่') !== false){
 					if($isData3 > 0 || strpos($message, 'ไม่') !== false){
 						$count = $tmp[2];
-						continue;
 					}
 					$count = $tmp[2] + 1;
 				}
