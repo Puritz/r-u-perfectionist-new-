@@ -198,7 +198,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				if($isData2 > 0 || strpos($message, 'ใช่') !== false){
 					$count = $tmp[2] + 1;
 				}
-				else if($isData3 > 0){
+				else if($isData3 > 0 || strpos($message, 'ไม่') !== false){
 					$count = $tmp[2];
 				}
 				
@@ -562,7 +562,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    $_user=str_replace("[","",$pieces[0]);
 			    $_system=str_replace("]","",$pieces[1]);
 			     //Post New Data
-			   $newData = json_encode(
+			    $newData = json_encode(
 				      array(
 					'user' => $_user,
 					'system'=> $_system
@@ -590,7 +590,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
                     $multiMessage->add($textMessage);
                     $multiMessage->add($stickerMessage);
                     $replyData = $multiMessage; 
-		$response = $bot->replyMessage($replyToken,$replyData);
+		    $response = $bot->replyMessage($replyToken,$replyData);
             break;
 			
 			
