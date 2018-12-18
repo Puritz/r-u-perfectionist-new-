@@ -195,31 +195,19 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				
 				$count = $tmp[2];
 				
-				$c_count = 0;
-				if($c_count = 0){
+				if(strpos($message, 'ไม่ใช่') !== false){
+					$count = $tmp[2];
+				}	
+				else{
 					if($isData3 > 0 || strpos($message, 'ไม่') !== false){
-					$count = $tmp[2];
-					$c_count = 0;
+						$count = $tmp[2];
 					}
-					
-					if(strpos($message, 'ไม่ใช่') !== false){
-					$count = $tmp[2];
-					$c_count = 1;
+					else if($isData2 > 0 || strpos($message, 'ใช่') !== false){
+						$count = $tmp[2] + 1;
 					}
-					
-					if($c_count = 0){
-						if($isData2 > 0 || strpos($message, 'ใช่') !== false){
-							$count = $tmp[2] + 1;
-						}
-					}			
-				}		
-				
-				/*if($isData3 > 0 || strpos($message, 'ไม่') !== false){
-					$count = $tmp[2];
 				}
-				else if($isData2 > 0 || strpos($message, 'ใช่') !== false){
-					$count = $tmp[2] + 1;
-				}*/
+				
+				
 				
 
 				$myfile = fopen($fileName, "w");
