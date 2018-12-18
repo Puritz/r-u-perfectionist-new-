@@ -201,34 +201,6 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 				else if($isData3 > 0 || strpos($message, 'ไม่') !== false){
 					$count = $tmp[2];
 				}
-				else{
-					$actionBuilder = array(
-					new MessageTemplateActionBuilder(
-					    'ใช่',// ข้อความแสดงในปุ่ม
-					    'ใช่' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-					),
-					new MessageTemplateActionBuilder(
-					    'ไม่',// ข้อความแสดงในปุ่ม
-					    'ไม่' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-					),                   
-                           		);
-                        
-					    $imageUrl = 'https://www.picz.in.th/images/2018/10/23/kFKkru.jpg';    
-					    $buttonMessage = new TemplateMessageBuilder('Button Template',
-						new ButtonTemplateBuilder(
-					    		'คำที่คุณพิมพ์หมายถึง ใช่ หรือ ไม่', // กำหนดหัวเรื่อง
-							'กรุณาเลือก 1 ข้อ', // กำหนดรายละเอียด
-					   $imageUrl, // กำหนด url รุปภาพ
-					   $actionBuilder  // กำหนด action object
-                      			  )
-                   			 );  
-					
-			
-
-					    $multiMessage = new MultiMessageBuilder;
-					    $multiMessage->add($buttonMessage)
-					    $replyData = $multiMessage; 
-				}
 				
 				$myfile = fopen($fileName, "w");
 				$txtW = $tmp[0] . "|" . $tmp[1] . "|" . $count;
