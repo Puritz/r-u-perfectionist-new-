@@ -562,8 +562,6 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    $_user=str_replace("[","",$pieces[0]);
 			    $_system=str_replace("]","",$pieces[1]);
 			     //Post New Data
-		   	    
-			   
 			    $newData = json_encode(
 				      array(
 					'user' => $_user,
@@ -579,14 +577,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    );
 			    $context = stream_context_create($opts);
 			    $returnValue = file_get_contents($url2,false,$context);
-			    
-				 
-			   
-			    }
-				 
-				 
-				 
-				 
+
 			 }
 			
                     $textReplyMessage = "ขอบคุณที่สอนจ้า";
