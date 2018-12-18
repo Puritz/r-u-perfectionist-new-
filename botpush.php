@@ -563,7 +563,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    $_system=str_replace("]","",$pieces[1]);
 			     //Post New Data
 			   
-		           if($pieces[1] == "ใช่"){
+		           if($_system == "ใช่"){
 			    $newData = json_encode(
 				      array(
 					'user' => $_user,
@@ -580,7 +580,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			    $context = stream_context_create($opts);
 			    $returnValue = file_get_contents($url2,false,$context);
 			   }
-		            else if($pieces[1] == "ไม่"){
+		            else if($_system == "ไม่"){
 				   $newData = json_encode(
 				      array(
 					'user' => $_user,
@@ -595,7 +595,7 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 			       )
 			    );
 			    $context = stream_context_create($opts);
-			    $returnValue = file_get_contents($url2,false,$context);
+			    $returnValue = file_get_contents($url3,false,$context);
 			    }
 			 }
 			
