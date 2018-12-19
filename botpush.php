@@ -333,12 +333,11 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
 					$textReplyMessage = $question;
 					$textMessage = new TextMessageBuilder($textReplyMessage); 
 
-					$textReplyMessage2 = $txtW;
-					$textMessage2 = new TextMessageBuilder($textReplyMessage2); 
+					
 
 					$multiMessage = new MultiMessageBuilder;
 					$multiMessage->add($textMessage);   			
-					$multiMessage->add($textMessage2); 
+					
 
 					$replyData = $multiMessage; 
 					$response = $bot->pushMessage($id,$replyData);	
